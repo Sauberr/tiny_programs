@@ -1,3 +1,6 @@
+import random
+
+
 def input_matrix(result):
     for i in result:
         print(str(i).replace(',', ''))
@@ -29,6 +32,31 @@ def multiplication_matrix_by_number(matrix_1):
     except (TypeError, ValueError):
          print('Ведите число а не символы')
 
+
+def random_generate_matrix_values():
+    rows = int(input('Ведите количество строк матрицы: '))
+    columns = int(input('Ведите количество столбцов матрицы : '))
+    matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(rows):
+            element = random.randint(0, 9)
+            row.append(element)
+        matrix.append(row)
+    return matrix
+
+
+def random_generate_matrix_values_and_size():
+    rows = random.randint(1, 9)
+    columns = random.randint(1, 9)
+    matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(rows):
+            element = random.randint(0, 9)
+            row.append(element)
+        matrix.append(row)
+    return matrix
 
 def degree_matrix_by_number(matrix_1):
     try:
@@ -110,6 +138,8 @@ while True:
     print('"T" - Транспонирование матриц.')
     print('"N" - Умножение матрицы на число.')
     print('"^" - Умножение матрицы на число.')
+    print('"R" - Сгенерировать матрицу определеного размера заполненой рандомнами цифрами.')
+    print('"Н" - Сгенерировать матрицу рандомного размера заполненой рандомнами цифрами.')
 
     choice = input('Ведите операцию: ')
 
@@ -136,6 +166,12 @@ while True:
             result = multiplication_matrix_by_number(matrix_1)
         elif choice == '^':
             result = degree_matrix_by_number(matrix_1)
+
+    elif choice in {'R', 'H'}:
+        if choice == 'R':
+            result = random_generate_matrix_values()
+        elif choice == 'H':
+            result = random_generate_matrix_values_and_size()
 
         input_matrix(result)
     else:
